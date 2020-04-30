@@ -8,25 +8,82 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import PortalVue from 'portal-vue';
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/regular';
+import '@fortawesome/fontawesome-free/js/brands';
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import Home from './components/Home.vue';
+import About from './components/About.vue';
+import Projects from './components/Projects.vue';
+
+const files = require.context('./', true, /\.vue$/i)
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+Vue.use(VueRouter);
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+Vue.use(PortalVue);
+
+const routes = [
+	{ path: '/', component: Home},
+	{ path: '/about', component: About},
+	{ path: '/projects', component: Projects}
+];
+
+const router = new VueRouter({
+	routes
+});
 
 const app = new Vue({
-    el: '#app',
+	el: '#app',
+	router,
+    data: {
+    	menuOpened: false,
+    	menuItems: {
+    		about: {
+    			url: '/about'
+    		},
+    		projects: {
+    			url: '/projects'
+    		}
+    	},
+    	externalMenuItems: {
+    		'twitter': {
+    			url: 'https://twitter.com/Kikiio2020',
+    			icon:'fab fa-twitter',
+    		},
+    		'github': {
+    			url: 'https://github.com/kikiio2020',
+    			icon: 'fab fa-github',
+    		},
+    		/*'patreon': {
+    			url: 'https://www.patreon.com/~kikiio2020',
+    			icon: 'fab fa-patreon',
+    		},*/
+    		'email': {
+    			url: 'mailto:info@kikiio.com',
+    			icon: 'fas fa-envelope-square',
+    		},
+    	},
+    	
+    },
+    computed: {
+    },
+    methods:{
+    	goBack() {
+    		window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+	    }
+    },
+    mounted() {
+    }
 });
