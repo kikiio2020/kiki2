@@ -66,10 +66,10 @@ const app = new Vue({
     			url: 'https://github.com/kikiio2020',
     			icon: 'fab fa-github',
     		},
-    		/*'patreon': {
-    			url: 'https://www.patreon.com/~kikiio2020',
+    		'patreon': {
+    			url: 'https://www.patreon.com/kikiio2020',
     			icon: 'fab fa-patreon',
-    		},*/
+    		},
     		'email': {
     			url: 'mailto:info@kikiio.com',
     			icon: 'fas fa-envelope-square',
