@@ -97,43 +97,12 @@
 			</div>
             <b-collapse id="dropdownmenu" v-model="menuOpened" class="mt-2">
                 <b-card no-body>
-                	<b-list-group flush>
-                    	<b-list-group-item 
-        					v-for="(item, key) in menuItems"
-        					:to="item.url"
-        					class="p-0 m-0"
-    					>
-    						<div class="p-1" style="background-color:#291fff">
-        						@{{key}}
-        					</div>
-    					</b-list-group-item>
-                    	<b-list-group-item 
-        					v-for="(item, key) in externalMenuItems"
-        					:href="item.url"
-        					target="_blank"
-        					class="p-0 m-0"
-    					>
-        					<div class="p-1" style="background-color:#291fff">
-        						<i :class="item.icon"></i>
-        					</div>
-    					</b-list-group-item>
-					</b-list-group>
+                	<mobile-dropdown-menu :menu-items="menuItems" :external-menu-items="externalMenuItems"></mobile-dropdown-menu>
                 </b-card>
           	</b-collapse>
 			
 			<!-- Desktop view -->
-			<b-nav align="right" class="d-none d-md-flex">
-            	<b-nav-item 
-            		v-for="(item, key) in menuItems"
-            		:to="item.url"
-        		>@{{key}}</b-nav-item>
-            	<b-nav-item 
-            		v-for="(item, key) in externalMenuItems"
-            		:href="item.url"
-            		target="_blank"
-        		><i :class="item.icon"></i></b-nav-item>
-          	</b-nav>
-			
+			<top-nav :menu-items="menuItems" :external-menu-items="externalMenuItems"></top-nav>
 		</b-col>
 	</b-row>
 	</b-container>

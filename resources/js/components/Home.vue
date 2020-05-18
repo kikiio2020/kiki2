@@ -50,8 +50,7 @@ export default {
     		return this.quotes[Math.floor(Math.random() * this.quotes.length)];
 		}
     },
-    mounted() {
-    }
+    mounted() {}
 }
 </script>
 <style>
