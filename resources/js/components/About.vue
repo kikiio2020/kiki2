@@ -1,13 +1,12 @@
 <template>
 <b-container>
 <b-row><b-col class="text-left ml-5 mr-5 pl-5 pr-5">
-
-<p>Project time! Let's make something! Something of the heart!</p>
+<p class="mt-5">Project time! Let's make something! Something of the heart!</p>
 <p>Heart all humans,</p>
 <p>Heart all beings,</p>
 <p>Heart the earth,</p>
 <p>Heart for all!,</p>
-<p>Welcome to Kikiio!</p> 
+<p class="mt-5">Welcome to Kikiio!</p> 
 <p>Kiki (機器) is machine. Here the machine has a heart, and is programmed to do good.</p>
 
 <!-- 
@@ -23,10 +22,10 @@ It might not succeed at first attempt, but will keep trying nevertheless.
  -->
 <p>
 <ul>
-	<li>Feedbacks <a class="text-info" href='mailto:info@kikiio.com'>welcomed</a></li>
-	<li>Financial support <a class="text-info" href="https://www.patreon.com/kikiio2020" target="_blank">welcomed</a></li>
-	<li>Collaberation <a class="text-info" href='https://github.com/kikiio2020' target="_blank">welcomed</a></li>
-	<li>Follow me <a class="text-info" href="https://twitter.com/Kikiio2020" target="_blank">welcomed</a></li>
+	<li>Feedbacks <a class="text-info" href='mailto:info@kikiio.com'>welcomed</a>!</li>
+	<li>Financial support <a class="text-info" href="https://www.patreon.com/kikiio2020" target="_blank">welcomed!</a>!</li>
+	<li>Collaberation <a class="text-info" href='https://github.com/kikiio2020' target="_blank">welcomed</a>!</li>
+	<li>Follow me <a class="text-info" href="https://twitter.com/Kikiio2020" target="_blank">welcomed</a>!</li>
 </ul>
 </p>
 <!-- 
