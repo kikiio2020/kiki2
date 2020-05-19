@@ -16,5 +16,11 @@ export default [
 		author: 'Idalin Bobé',
 		text: 'We should not go back to normal. Normal wasn’t working.',
 		source: 'https://twitter.com/IdalinBobe/status/1254184720474214402',
+	},
+	{
+		author: 'Kai-Fu Lee',
+		text: 'The most important organ that we have really isn\'t our brain, but our heart.',
+		source: 'https://youtu.be/8wOqP6fZuto?t=1878',
 	}
+	
 ];

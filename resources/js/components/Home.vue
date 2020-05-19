@@ -11,7 +11,7 @@
         	<div class="m-5 text-left">
             	<p>{{randomQuote.text}}</p>
             	<p class="text-right">--{{randomQuote.author}}</p>
-            	<p v-if="randomQuote.source" class="text-right"><a :href="randomQuote.source">source</a></p>
+            	<p v-if="randomQuote.source" class="text-right"><a :href="randomQuote.source" target="_blank">source</a></p>
         	</div>
         </b-col>
         <b-col 
