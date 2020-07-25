@@ -4,7 +4,10 @@
      	v-for="(item, key) in menuItems"
         :to="item.url"
         :key="'menu' + key"
-    >{{key}}</b-nav-item>
+    >
+    	<i v-if="item.icon" :class="item.icon"></i>
+    	<span v-else>{{key}}</span>
+    </b-nav-item>
     <b-nav-item 
        	v-for="(item, key) in externalMenuItems"
        	:href="item.url"

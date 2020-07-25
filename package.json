@@ -15,19 +15,21 @@
         "cross-env": "^7.0",
         "jquery": "^3.5.1",
         "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.13",
+        "lodash": "^4.17.19",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
+        "sass": "^1.26.10",
         "sass-loader": "^8.0.0",
         "vue": "^2.6.11",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.13.0",
+        "@fortawesome/fontawesome-free": "^5.14.0",
         "@kikiio2020/vue-flipping-stepper": "0.0.21",
         "bootstrap-vue": "^2.15.0",
         "portal-vue": "^2.1.7",
-        "vue-router": "^3.3.1"
+        "vee-validate": "^3.3.7",
+        "vue-country-region-select": "^2.0.14",
+        "vue-router": "^3.3.4"
     }
 }

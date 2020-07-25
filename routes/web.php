@@ -13,9 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//Throttled 60 tasks per minute
+\Route::group(
+    [
+        'prefix' => 'webapi',
+        'middleware' => ['throttle:60,1']
+    ], 
+    function () {
+        \Route::post('subscribeNews', 'Api\NewsletterController@subscribeNews');
+        \Route::post('unsubscribeNews', 'Api\NewsletterController@unsubscribeNews');
+    }
+);
+
 \Route::get('/', function () {
     return view('main');
 });
+
 
 
 //Unfortunately this approach doesn't seem possible

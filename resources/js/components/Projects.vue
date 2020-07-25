@@ -22,6 +22,23 @@ A data table that loads a GET API end point and provision UI elements for the ot
 </b-card>
 
 </b-col></b-row>
+
+
+<b-row><b-col class="text-left">
+
+<h2>Future Projects</h2>
+
+<b-card title="Community Token" class="bg-transparent">
+<b-card-text>
+ A community token based on the Ethereum network, and an application that makes use of it. 
+</b-card-text>
+<b-card-text>
+<a href='/contacts' class="text-white">Stay tuned!</a>
+</b-card-text>
+</b-card>
+
+</b-col></b-row>
+
 </b-container>
 
 </template>

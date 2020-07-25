@@ -24,6 +24,9 @@ import '@fortawesome/fontawesome-free/js/brands';
 import Home from './components/Home.vue';
 import About from './components/About.vue';
 import Projects from './components/Projects.vue';
+import Contacts from './components/Contacts.vue';
+import Subscribed from './components/Subscribed.vue';
+import Unsubscribe from './components/Unsubscribe.vue';
 
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
@@ -37,7 +40,10 @@ Vue.use(PortalVue);
 const routes = [
 	{ path: '/', component: Home},
 	{ path: '/about', component: About},
-	{ path: '/projects', component: Projects}
+	{ path: '/projects', component: Projects},
+	{ path: '/contacts', component: Contacts},
+	{ path: '/subscribed', component: Subscribed},
+	{ path: '/unsubscribe/:email', component: Unsubscribe},
 ];
 
 const router = new VueRouter({
@@ -55,7 +61,11 @@ const app = new Vue({
     		},
     		projects: {
     			url: '/projects'
-    		}
+    		},
+    		contacts: {
+    			url: '/contacts',
+    			icon: 'far fa-envelope',
+    		},
     	},
     	externalMenuItems: {
     		'twitter': {
@@ -69,10 +79,6 @@ const app = new Vue({
     		'patreon': {
     			url: 'https://www.patreon.com/kikiio2020',
     			icon: 'fab fa-patreon',
-    		},
-    		'email': {
-    			url: 'mailto:info@kikiio.com',
-    			icon: 'fas fa-envelope-square',
     		},
     	},
     	
