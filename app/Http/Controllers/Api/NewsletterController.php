@@ -39,9 +39,10 @@ class NewsletterController extends Controller
             $url . 
             array_reduce(
                 array_keys($params), 
-                function(?string $result='', $paramKey) use ($params): string {
+                function(string $result, $paramKey) use ($params): string {
                     return $result . '&' . $paramKey . '=' . $params[$paramKey];
-                }
+                },
+                ''
             );
     }
     

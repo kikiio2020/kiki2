@@ -100,7 +100,7 @@ Contact me directly through email
 	      			v-model="country" 
 	      			:country="country"
 	      			required
-	      			countryName="true"
+	      			:countryName="true"
 				  	:state="getValidationState(validationContext, 'country')"
 	     		/>
 	     		<div class="text-danger "><small>{{ validationContext.errors[0] }}</small></div>
@@ -132,8 +132,8 @@ Contact me directly through email
 	      			:country="country" 
 	      			:region="region" 
 	      			default-region=""
-	      			countryName="true"
-	      			regionName="true"
+	      			:countryName="true"
+	      			:regionName="true"
 	      			required
 				  	:state="getValidationState(validationContext)" 
 	     		/>
@@ -248,8 +248,12 @@ export default {
         			this.successMessage = 'Thank you! Please check your email and follow instructions there to confirm';
         			this.$bvToast.show('successMessage');
         		}).catch(error => {
-        			this.errorMessage = error.response.data;
-        			this.$bvToast.show('errorMessage');
+					this.errorMessage = error.response.data;
+					if (this.errorMessage == 'CSRF token mismatch') {
+						this.$bvToast.show('Please refresh your browser before proceeding');
+					} else {
+						this.$bvToast.show('errorMessage');
+					}
         		}).finally(() => {
         			this.formSubmitting = false;
         		});
