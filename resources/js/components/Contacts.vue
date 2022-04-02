@@ -32,8 +32,8 @@ Contact me directly through email
 	header-class="subscribeForm"
 	body-class="subscribeForm" 
 	footer-class="subscribeForm"
-	ok-title="Subscribe"
-	:ok-disabled="formInvalid || formSubmitting"
+	:ok-title="okText ? okText : 'Subscribe'"
+	:ok-disabled="formInvalid || formSubmitting || formSubmitted"
 	@ok="handleSubscribe"
 	@hidden="handleHide"
 	no-close-on-backdrop
@@ -112,18 +112,6 @@ Contact me directly through email
 	        label="Region:"
 	        label-for="region"
 	      >
-	      	<!-- 
-	      	<region-select 
-	      			id="region" 
-	      			name="region"
-	      			v-model="region" 
-	      			:country="country" 
-	      			:region="region" 
-	      			default-region=""
-	      			countryName="true"
-	      			regionName="true"
-	     		/>
-	     		 -->
 	      	<ValidationProvider rules="required" v-slot="validationContext" name="Region">
 	      		<region-select 
 	      			id="region" 
@@ -174,18 +162,20 @@ export default {
     data() {
         return {
         	formInvalid: true,
-        	formSubmitting: false,
+			formSubmitting: false,
+			formSubmitted: false,
         	showSubscribeForm: false,
         	name: '',
         	email: '',
         	country: '',
             region: '',
             successMessage: '',
-            errorMessage: '',
+			errorMessage: '',
+			okText: '',
         }
     },
     methods: {
-    	getFormValidationState({ invalid }) {
+		getFormValidationState({ invalid }) {
             this.formInvalid = invalid;                
         },
     	getValidationState({ dirty, validated, valid = null, invalid, errors }, name) {
@@ -197,57 +187,32 @@ export default {
         	this.country = '';
         	this.region = '';
         	this.formInvalid = true;
-        	this.formSubmitting = false;
+			this.formSubmitting = false;
+			this.formSubmitted = false;
         	this.successMessage = '';
-            this.errorMessage = '';
+			this.errorMessage = '';
+			this.okText = '';
         },
         handleSubscribe(bvModalEvt) {
         	bvModalEvt.preventDefault();
-        	if (!this.formInvalid) {
+			if (!this.formInvalid) {
         		this.formSubmitting = true;
-        		//this.$refs.subscribeForm.submit();
-
-        		/*
-        		const url = 'https://api.dreamhost.com?key=5ZKRNRSBC5KCN3U9&cmd=announcement_list-add_subscriber&format=json&listname=news@kikiio.com&domain=kikiio.com&email=dleungc@hotmail.com';
-        		axios.get(url).then(response => {
-        			console.log('success');
-        			console.log(response);
-        		}).catch(error => {
-        			console.log('error');
-        			console.log(error);
-        		});
-        		*/
-        		/*
-        		axios.post('https://api.dreamhost.com', {
-        			headers: {
-        				'Access-Control-Allow-Origin': '*',
-        				'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        			},
-        			key: '5ZKRNRSBC5KCN3U9',
-        			cmd: 'announcement_list-add_subscriber',
-        			format: 'json',
-        			listname: 'news@kikiio.com',
-        			domain: 'kikiio.com',
-        			email: this.email,
-        			name: this.name,
-        		}).then(response => {
-        			console.log('success');
-        			console.log(response);
-        		}).catch(error => {
-        			console.log('error');
-        			console.log(error);
-        		});
-        		*/
-        		
-        		axios.post('/webapi/subscribeNews', {
+				this.okText = '...';
+				axios.post('/webapi/subscribeNews', {
         			email: this.email,
         			name: this.name,
         			country: this.country,
         			region: this.region,
         		}).then(response => {
-        			this.successMessage = 'Thank you! Please check your email and follow instructions there to confirm';
-        			this.$bvToast.show('successMessage');
+					this.okText = 'Submitted';
+					this.formSubmitting =false;
+					this.formSubmitted = true;
+					this.successMessage = 'Thank you! Please check your email and follow instructions there to confirm';
+					this.$bvToast.show('successMessage');
         		}).catch(error => {
+					this.formSubmitting = false;
+					this.formSubmitted = false;
+					this.okText = '';
 					this.errorMessage = error.response.data;
 					if (this.errorMessage == 'CSRF token mismatch') {
 						this.$bvToast.show('Please refresh your browser before proceeding');
@@ -255,14 +220,15 @@ export default {
 						this.$bvToast.show('errorMessage');
 					}
         		}).finally(() => {
-        			this.formSubmitting = false;
+        			//this.formSubmitting = false;
         		});
-        	}
+			}
+			
         }
     },
     computed: {},
     mounted() {
-    }
+	}
 }
 </script>
 <style>
